@@ -1,81 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
 
-    <!-- This is often your domain name (reversed.)  -->
-    <groupId>com.yourorganization</groupId>
-    <!-- The name of this project (actually, the name of the artifact, which is the thing that this project produces. A jar in this case.) -->
-    <artifactId>javaparser-maven-sample</artifactId>
-    <!-- The version of this project. SNAPSHOT means "we're still working on it" -->
-    <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
+<!--
+   Copyright (c) 2009, 2012 Mountainminds GmbH & Co. KG and Contributors
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
 
-    <properties>
-        <!-- Tell Maven we want to use Java 8 -->
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-        <!-- Tell Maven to treat all source files as UTF-8 -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+   Contributors:
+      Marc R. Hoffmann - initial API and implementation
+-->
 
-    <dependencies>
-        <!-- Here are all your dependencies. Currently only one. These are automatically downloaded from https://mvnrepository.com/ -->
-        <dependency>
-            <groupId>com.github.javaparser</groupId>
-            <artifactId>javaparser-core</artifactId>
-            <version>3.18.0</version>
-        </dependency>
-    </dependencies>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <!-- This blob of configuration tells Maven to make the jar executable. You can run it with:
-    mvn clean package
-    java -jar target/javaparser-maven-sample-1.0-SNAPSHOT-shaded.jar
-    -->
-    <build>
-        <plugins>
-<<<<<<< HEAD
-            
-		<plugin>            
-		  <groupId>org.apache.maven.plugins</groupId>
- 		  <artifactId>maven-war-plugin</artifactId>
-  		  <configuration>
-    		  <webXml>WEB-INF\web.xml</webXml>        
- 		  </configuration>
-                </plugin>
-                <plugin>
-=======
-        	<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
+	<groupId>org.jacoco</groupId>
+	<artifactId>org.jacoco.examples.maven.java</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>jar</packaging>
+
+	<name>JaCoCo Maven plug-in example for Java project</name>
+	<url>http://www.eclemma.org/jacoco</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13.1</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src/main/java</sourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.6</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
-            <plugin>
->>>>>>> 6761c311daeba8946d2b2c7f6263a4fcdc171af4
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <transformers>
-                                <transformer
-                                        implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                                    <mainClass>com.yourorganization.maven_sample.LogicPositivizer</mainClass>
-                                </transformer>
-                            </transformers>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+			<plugin> 
+				<groupId>org.apache.maven.plugins</groupId> 
+				<artifactId>maven-compiler-plugin</artifactId> 
+				<version>3.8.1</version> 
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
