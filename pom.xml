@@ -34,7 +34,15 @@
     -->
     <build>
         <plugins>
-            <plugin>
+            
+		<plugin>            
+		  <groupId>org.apache.maven.plugins</groupId>
+ 		  <artifactId>maven-war-plugin</artifactId>
+  		  <configuration>
+    		  <webXml>WEB-INF\web.xml</webXml>        
+ 		  </configuration>
+                </plugin>
+                <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
                 <version>3.2.4</version>
