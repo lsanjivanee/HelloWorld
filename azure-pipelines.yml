@@ -8,7 +8,7 @@ trigger:
 
 pool: 
   name: Default
-    agent: mydockeragent
+    
 
 steps:
 - task: Maven@4
